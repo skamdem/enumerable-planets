@@ -3,12 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Enumerable Planets</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script type="text/javascript"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
-<h1>Pick a planet:</h1>
 
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Planet Name</th>
+        <th>Year length</th>
+        <th>Number of moons</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="planet : ${planets}">
+        <td th:text="${planet.displayName}"></td>
+        <td th:text="${planet.yearLength}"></td>
+        <td th:text="${planet.moons}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Pick a planet:</h1>
+<div class="form-group">
+    <label>Planet
+        <select th:field="${planets}" class="form-control">
+            <option th:each="planet : ${planets}" th:value="${planet}" th:text="${planet.displayName}"></option>
+        </select>
+    </label>
+</div>
 </body>
 </html>
